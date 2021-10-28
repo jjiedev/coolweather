@@ -1,8 +1,8 @@
 package com.thundersoft.coolweather.db;
 
-import org.litepal.crud.DataSupport;
+import org.litepal.crud.LitePalSupport;
 
-public class Country extends DataSupport {
+public class Country extends LitePalSupport {
     private int id;
     private String countryName;
     private String weatherId;
