@@ -93,7 +93,6 @@ public class ChooseAreaFragment extends Fragment {
         titleText = view.findViewById(R.id.title_text);
         backButton = view.findViewById(R.id.back_button);
         listView = view.findViewById(R.id.list_view);
-        //queryProvinces();
         adapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_1,dataList);
         listView.setAdapter(adapter);
 
@@ -109,30 +108,30 @@ public class ChooseAreaFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if (currenrLevel == LEVEL_PROVINCE){
-                    selectedProvince = provinceList.get(position);
-                    queryCities();
-                }else if(currenrLevel == LEVEL_CITY){
-                    selectedCity = cityList.get(position);
-                    queryCounties();
-                }else if (currenrLevel == LEVEL_COUNTRY){
-                    String weatherId = countryList.get(position).getWeatherId();
-                    Intent intent = new Intent(getActivity(),WeatherActivity.class);
-                    intent.putExtra("weather_id",weatherId);
-                    startActivity(intent);
-                    getActivity().finish();
-                }
+            if (currenrLevel == LEVEL_PROVINCE){
+                selectedProvince = provinceList.get(position);
+                queryCities();
+            }else if(currenrLevel == LEVEL_CITY){
+                selectedCity = cityList.get(position);
+                queryCounties();
+            }else if (currenrLevel == LEVEL_COUNTRY){
+                String weatherId = countryList.get(position).getWeatherId();
+                Intent intent = new Intent(getActivity(),WeatherActivity.class);
+                intent.putExtra("weather_id",weatherId);
+                startActivity(intent);
+                getActivity().finish();
+            }
             }
         });
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currenrLevel == LEVEL_COUNTRY){
-                    queryCities();
-                }else if(currenrLevel == LEVEL_CITY){
-                    queryProvinces();
-                }
+            if (currenrLevel == LEVEL_COUNTRY){
+                queryCities();
+            }else if(currenrLevel == LEVEL_CITY){
+                queryProvinces();
+            }
             }
         });
 
@@ -166,7 +165,7 @@ public class ChooseAreaFragment extends Fragment {
      * 查询全国所有的市，优先从数据库中查询，如果没有查询到，再去服务器中查询
      */
     private void queryCities() {
-        Log.i(TAG, "queryCities()");
+        Log.i(TAG, "queryCounties()");
         titleText.setText(selectedProvince.getProvinceName());
         backButton.setVisibility(View.VISIBLE);
 
@@ -191,7 +190,7 @@ public class ChooseAreaFragment extends Fragment {
      * 查询全国所有的区，优先从数据库中查询，如果没有查询到，再去服务器中查询
      */
     private void queryCounties() {
-        Log.i(TAG, "queryCounties()");
+        Log.i(TAG, "queryCities()");
         titleText.setText(selectedCity.getCityName());
         backButton.setVisibility(View.VISIBLE);
 
